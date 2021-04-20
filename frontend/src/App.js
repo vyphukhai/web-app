@@ -4,6 +4,7 @@ import { signout } from "./actions/userActions";
 import CartScreen from "./screens/CartScreen";
 import HomeScreen from "./screens/HomeScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import ProductScreen from "./screens/ProductScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
@@ -17,19 +18,24 @@ function App() {
   const signoutHandler = () => {
     dispatch(signout());
   };
-
   return (
     <BrowserRouter>
+      <link
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+        crossorigin="anonymous"
+      ></link>
       <div className="grid-container">
         <header className="row">
           <div>
             <Link className="brand" to="/">
-              amazona
+              manazone
             </Link>
           </div>
           <div>
             <Link to="/cart">
-              Cart
+              <i class="fas fa-shopping-cart"></i>
               {cartItems.length > 0 && (
                 <span className="badge">{cartItems.length}</span>
               )}
@@ -41,12 +47,14 @@ function App() {
                 </Link>
                 <ul className="dropdown-content">
                   <Link to="#signout" onClick={signoutHandler}>
-                    Sign Out
+                    Log out
                   </Link>
                 </ul>
               </div>
             ) : (
-              <Link to="/signin">Sign In</Link>
+              <Link to="/signin">
+                <i class="fas fa-sign-in-alt"></i>Log in
+              </Link>
             )}
           </div>
         </header>
@@ -57,6 +65,7 @@ function App() {
           <Route path="/register" component={RegisterScreen}></Route>
           <Route path="/shipping" component={ShippingAddressScreen}></Route>
           <Route path="/payment" component={PaymentMethodScreen}></Route>
+          <Route path="/placeorder" component={PlaceOrderScreen}></Route>
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">All right reserved</footer>
